@@ -1,0 +1,38 @@
+https://leetcode.com/problems/spiral-matrix/
+
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        
+        vector<int>ans;
+        int row = matrix.size()-1;
+        int column = matrix[0].size()-1;
+        int rowb=0,colb=0;
+        int i,j;
+        while(rowb<=row && colb<=column){
+            for(int i=colb;i<=column;i++){
+                ans.push_back(matrix[rowb][i]);
+            }
+            rowb++;
+            for(int i=rowb;i<=row;i++){
+                ans.push_back(matrix[i][column]);
+            }
+            column--;
+            if(rowb<=row){
+               for(int i=column;i>=colb;i--){
+                   ans.push_back(matrix[row][i]);
+               } 
+            }
+            row--;
+            
+            if(colb<=column){
+               for(int i=row;i>=rowb;i--){
+                   ans.push_back(matrix[i][colb]);
+               } 
+            }
+            colb++;
+        }
+           
+       return ans; 
+    }
+};

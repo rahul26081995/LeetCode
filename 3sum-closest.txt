@@ -1,0 +1,31 @@
+https://leetcode.com/problems/3sum-closest/
+
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) {
+        int n= nums.size();
+        int ans= nums[0]+nums[1]+nums[n-1];;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n-1;i++){
+            int a=nums[i];
+            int s=i+1;
+            int e = n-1;
+            while(s<e){
+                int curr = a+nums[s]+nums[e];
+                if(target==curr){
+                    return target;
+                }
+                else if(target > curr){
+                    s++;
+                }else {
+                    e--;
+                }
+                if(abs(target-ans)>abs(target-curr)){
+                    ans=curr;
+                }
+            }
+        }
+        return ans;
+        
+    }
+};
