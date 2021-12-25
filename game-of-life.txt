@@ -1,0 +1,40 @@
+https://leetcode.com/problems/game-of-life/
+
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+        
+        int x[] ={-1,-1,-1,0,0,1,1,1};
+        int y[] ={1,0,-1,1,-1,1,0,-1};
+        int m = board.size();
+        int n  = board[0].size();
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                int cnt=0;
+                for(int k=0;k<8;k++){
+                    if(check(i+x[k],j+y[k],m,n) && abs(board[i+x[k]][j+y[k]])==1){
+                        cnt++;
+                    }    
+                }
+                if(board[i][j]==1 && (cnt>3 || cnt<2)){
+                    board[i][j]=-1;
+                }
+                if(board[i][j]==0 && cnt==3){
+                    board[i][j]=2;
+                }
+            }
+        }
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                board[i][j]= board[i][j]>0 ? 1:0;
+            }
+        }
+        
+    }
+    
+    bool check(int x,int y, int m,int n){
+        if(x>=m || x<0 || y>=n || y<0)
+            return false;
+        return true;
+    }
+};

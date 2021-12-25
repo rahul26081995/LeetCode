@@ -1,0 +1,34 @@
+https://leetcode.com/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/
+
+class Solution {
+public:
+    int maxArea(int h, int w, vector<int>& horizontalCuts, vector<int>& verticalCuts) {
+        vector<int> htmp;
+        vector<int> vtmp;
+        sort(horizontalCuts.begin(),horizontalCuts.end());
+        sort(verticalCuts.begin(),verticalCuts.end());
+        int n = horizontalCuts.size();
+        int m = verticalCuts.size();
+        htmp.push_back(horizontalCuts[0]);
+        vtmp.push_back(verticalCuts[0]);
+        for(int i=1;i<n;i++){
+            htmp.push_back(horizontalCuts[i]-horizontalCuts[i-1]);
+        }
+        htmp.push_back(h-horizontalCuts[n-1]);
+        
+         for(int i=1;i<m;i++){
+            vtmp.push_back(verticalCuts[i]-verticalCuts[i-1]);
+        }
+        vtmp.push_back(w-verticalCuts[m-1]);
+        
+       sort(htmp.begin(),htmp.end());
+        sort(vtmp.begin(),vtmp.end());
+        
+        long long int a = htmp[n]%1000000007;
+        long long int b = vtmp[m]%1000000007;
+        long long ans = (a*b)%1000000007;
+        return ans;
+        
+        
+    }
+};

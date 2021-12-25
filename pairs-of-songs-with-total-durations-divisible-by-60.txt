@@ -1,0 +1,25 @@
+https://leetcode.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/
+
+class Solution {
+public:
+    int numPairsDivisibleBy60(vector<int>& time) {
+       map<int,int> m;
+        set<pair<int,int> >p;
+        int n = time.size();
+//         for(int i=0;i<n;i++){
+//             m[time[i]]=i;
+//         }
+        
+        int ans=0;
+        for(int i=0;i<n;i++){
+            int rem = time[i]%60;
+            if(rem==0){
+                ans = ans+m[rem];
+            }else{
+                ans = ans + m[60-rem];
+            }
+            m[rem]++;
+        }
+        return ans;
+    }
+};
