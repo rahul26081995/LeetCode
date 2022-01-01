@@ -1,0 +1,22 @@
+https://leetcode.com/problems/subsets/
+
+class Solution {
+public:
+    vector<vector<int>> finans;
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n = nums.size();
+        vector<int>v;
+        sub(n,nums,0,v);
+        return finans;
+        
+    }
+    
+    void sub(int n,vector<int>& nums, int s,vector<int>& v){
+        finans.push_back(v);
+        for(int i=s;i<n;i++){
+            v.push_back(nums[i]);
+            sub(n,nums,i+1,v);
+            v.pop_back();
+        }
+    }
+};

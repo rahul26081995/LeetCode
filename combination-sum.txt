@@ -1,0 +1,29 @@
+https://leetcode.com/problems/combination-sum/
+
+class Solution {
+public:
+    vector<vector<int>>finans;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int>ans;
+        csum(0,candidates,target,ans);
+        return finans;
+    }
+    
+    void csum(int i, vector<int> &c, int t, vector<int> &ans){
+        if(t==0){
+            finans.push_back(ans);
+            return;
+        }
+        if(t<0){
+            return;
+        }
+        if(i==c.size()){
+            return;
+        }
+        
+        csum(i+1,c,t,ans);
+        ans.push_back(c[i]);
+        csum(i,c,t-c[i],ans);
+        ans.pop_back();
+    }
+};
